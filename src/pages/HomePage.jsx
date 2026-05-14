@@ -9,21 +9,23 @@ import { useFetch } from "../hooks/useData";
 import { fetchServices, fetchPortfolioItems, fetchTestimonials } from "../services/api";
 
 const S = {
-  section: (bg) => ({ padding: "6rem 1.5rem", backgroundColor: bg || "#050816" }),
-  inner: { maxWidth: "1280px", margin: "0 auto" },
+  section: (bg) => ({ width: "100%", padding: "6rem 0", backgroundColor: bg || "#050816" }),
+  inner: { width: "100%", padding: "0 clamp(1.5rem, 5vw, 6rem)" },
   ctaBtn: {
     display: "inline-block", marginTop: "3rem",
-    padding: "16px 32px", fontWeight: 600, borderRadius: "0.75rem",
+    padding: "clamp(12px, 1.2vw, 20px) clamp(24px, 2.5vw, 48px)",
+    fontWeight: 600, borderRadius: "0.75rem",
     border: "1px solid rgba(255,255,255,0.2)", color: "#ffffff",
-    textDecoration: "none", transition: "border-color 0.2s, color 0.2s",
-    backgroundColor: "transparent",
+    textDecoration: "none", backgroundColor: "transparent",
+    fontSize: "clamp(0.875rem, 1.1vw, 1.2rem)",
+    transition: "border-color 0.2s, color 0.2s",
   },
 };
 
 const Skeleton = ({ count = 4 }) => (
   <div style={{ display: "grid", gap: "2rem", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))" }}>
     {Array.from({ length: count }).map((_, i) => (
-      <div key={i} style={{ height: "12rem", borderRadius: "1.5rem", backgroundColor: "rgba(255,255,255,0.05)", animation: "pulse 2s infinite" }} />
+      <div key={i} style={{ height: "12rem", borderRadius: "1.5rem", backgroundColor: "rgba(255,255,255,0.05)" }} />
     ))}
   </div>
 );
@@ -57,10 +59,8 @@ export const HomePage = () => {
         <div style={S.inner}>
           <SectionHeader eyebrow="Portfolio" title="Recent Projects" />
           {pfLoading ? <Skeleton count={4} /> : (
-            <div style={{ display: "grid", gap: "2rem", gridTemplateColumns: "repeat(auto-fit, minmax(220px, 1fr))" }}>
-              {(portfolio ?? []).slice(0, 4).map(item => (
-                <PortfolioCard key={item.id} item={item} />
-              ))}
+            <div style={{ display: "grid", gap: "clamp(1rem, 2vw, 2rem)", gridTemplateColumns: "repeat(auto-fit, minmax(clamp(240px, 22vw, 380px), 1fr))" }}>
+              {(portfolio ?? []).slice(0, 4).map(item => <PortfolioCard key={item.id} item={item} />)}
             </div>
           )}
           <div style={{ textAlign: "center" }}>
@@ -85,11 +85,11 @@ export const HomePage = () => {
 
       {/* Contact */}
       <section style={S.section("#070b1d")}>
-        <div style={{ maxWidth: "56rem", margin: "0 auto" }}>
+        <div style={{ width: "100%", padding: "0 clamp(1.5rem, 5vw, 6rem)" }}>
           <div style={{ textAlign: "center", marginBottom: "3.5rem" }}>
-            <p style={{ color: "#22d3ee", textTransform: "uppercase", letterSpacing: "3px", fontSize: "0.875rem", marginBottom: "0.75rem" }}>Contact</p>
-            <h2 style={{ color: "#ffffff", fontSize: "clamp(2rem,5vw,3rem)", fontWeight: 900, marginBottom: "1rem" }}>Let's Work Together</h2>
-            <p style={{ color: "#9ca3af", maxWidth: "42rem", margin: "0 auto" }}>
+            <p style={{ color: "#22d3ee", textTransform: "uppercase", letterSpacing: "3px", fontSize: "clamp(0.75rem, 1vw, 1rem)", marginBottom: "0.75rem" }}>Contact</p>
+            <h2 style={{ color: "#ffffff", fontSize: "clamp(2rem, 3.5vw, 5rem)", fontWeight: 900, marginBottom: "1rem" }}>Let's Work Together</h2>
+            <p style={{ color: "#9ca3af", fontSize: "clamp(0.9rem, 1.3vw, 1.4rem)" }}>
               Need a modern website, digital solution or professional online presence? Send your project details.
             </p>
           </div>

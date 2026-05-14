@@ -5,6 +5,7 @@ import { useFetch } from "../hooks/useData";
 import { fetchPortfolioItems } from "../services/api";
 
 const CATEGORIES = ["All", "E-commerce", "Automation", "Web Development"];
+const inner = { width: "100%", padding: "0 clamp(1.5rem, 5vw, 6rem)" };
 
 export const PortfolioPage = () => {
   const { data: portfolio, loading } = useFetch(fetchPortfolioItems);
@@ -17,26 +18,28 @@ export const PortfolioPage = () => {
   return (
     <div style={{ paddingTop: "6rem" }}>
       {/* Header */}
-      <section style={{ padding: "5rem 1.5rem", backgroundColor: "#070b1d" }}>
-        <div style={{ maxWidth: "1280px", margin: "0 auto", textAlign: "center" }}>
-          <p style={{ color: "#22d3ee", textTransform: "uppercase", letterSpacing: "4px", fontSize: "0.875rem", marginBottom: "1rem" }}>My Work</p>
-          <h1 style={{ color: "#ffffff", fontSize: "clamp(2.5rem,6vw,3.75rem)", fontWeight: 900, marginBottom: "1.5rem" }}>
+      <section style={{ width: "100%", padding: "5rem 0", backgroundColor: "#070b1d" }}>
+        <div style={{ ...inner, textAlign: "center" }}>
+          <p style={{ color: "#22d3ee", textTransform: "uppercase", letterSpacing: "4px", fontSize: "clamp(0.75rem, 1vw, 1rem)", marginBottom: "1rem" }}>My Work</p>
+          <h1 style={{ color: "#ffffff", fontSize: "clamp(2.5rem, 4vw, 6rem)", fontWeight: 900, marginBottom: "1.5rem" }}>
             Recent <span style={{ color: "#22d3ee" }}>Projects</span>
           </h1>
-          <p style={{ color: "#9ca3af", maxWidth: "42rem", margin: "0 auto", fontSize: "1.125rem", lineHeight: 1.7 }}>
+          <p style={{ color: "#9ca3af", fontSize: "clamp(1rem, 1.3vw, 1.4rem)", lineHeight: 1.7 }}>
             A showcase of projects spanning e-commerce, automation, and web development.
           </p>
         </div>
       </section>
 
       {/* Portfolio */}
-      <section style={{ padding: "6rem 1.5rem", backgroundColor: "#050816" }}>
-        <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
+      <section style={{ width: "100%", padding: "6rem 0", backgroundColor: "#050816" }}>
+        <div style={inner}>
           {/* Filter tabs */}
           <div style={{ display: "flex", flexWrap: "wrap", justifyContent: "center", gap: "0.75rem", marginBottom: "3.5rem" }}>
             {CATEGORIES.map(cat => (
               <button key={cat} onClick={() => setActiveCategory(cat)} style={{
-                padding: "10px 24px", borderRadius: "9999px", fontSize: "0.875rem", fontWeight: 600, cursor: "pointer", transition: "all 0.2s",
+                padding: "clamp(8px, 0.8vw, 14px) clamp(16px, 2vw, 32px)",
+                borderRadius: "9999px", fontSize: "clamp(0.8rem, 1vw, 1.1rem)",
+                fontWeight: 600, cursor: "pointer", transition: "all 0.2s",
                 backgroundColor: activeCategory === cat ? "#06b6d4" : "transparent",
                 color: activeCategory === cat ? "#ffffff" : "#9ca3af",
                 border: activeCategory === cat ? "1px solid #06b6d4" : "1px solid rgba(255,255,255,0.2)",
@@ -60,8 +63,8 @@ export const PortfolioPage = () => {
       </section>
 
       {/* Stats */}
-      <section style={{ padding: "5rem 1.5rem", backgroundColor: "#070b1d" }}>
-        <div style={{ maxWidth: "1280px", margin: "0 auto" }}>
+      <section style={{ width: "100%", padding: "5rem 0", backgroundColor: "#070b1d" }}>
+        <div style={inner}>
           <div style={{ display: "grid", gap: "2rem", gridTemplateColumns: "repeat(auto-fit, minmax(150px, 1fr))", textAlign: "center" }}>
             {[
               { value: "100+", label: "Projects Completed" },
@@ -70,8 +73,8 @@ export const PortfolioPage = () => {
               { value: "99%", label: "Client Satisfaction" },
             ].map(({ value, label }) => (
               <div key={label}>
-                <h3 style={{ color: "#22d3ee", fontSize: "2.5rem", fontWeight: 900, marginBottom: "0.5rem" }}>{value}</h3>
-                <p style={{ color: "#9ca3af" }}>{label}</p>
+                <h3 style={{ color: "#22d3ee", fontSize: "clamp(2rem, 3.5vw, 5rem)", fontWeight: 900, marginBottom: "0.5rem" }}>{value}</h3>
+                <p style={{ color: "#9ca3af", fontSize: "clamp(0.875rem, 1.1vw, 1.3rem)" }}>{label}</p>
               </div>
             ))}
           </div>
@@ -79,22 +82,16 @@ export const PortfolioPage = () => {
       </section>
 
       {/* CTA */}
-      <section style={{ padding: "6rem 1.5rem", backgroundColor: "#050816", textAlign: "center" }}>
-        <div style={{ maxWidth: "48rem", margin: "0 auto" }}>
-          <h2 style={{ color: "#ffffff", fontSize: "clamp(2rem,5vw,2.5rem)", fontWeight: 900, marginBottom: "1.5rem" }}>
+      <section style={{ width: "100%", padding: "6rem 0", backgroundColor: "#050816", textAlign: "center" }}>
+        <div style={inner}>
+          <h2 style={{ color: "#ffffff", fontSize: "clamp(2rem, 3.5vw, 5rem)", fontWeight: 900, marginBottom: "1.5rem" }}>
             Have a Project in <span style={{ color: "#22d3ee" }}>Mind?</span>
           </h2>
-          <p style={{ color: "#9ca3af", marginBottom: "2.5rem", fontSize: "1.125rem" }}>Let's discuss and bring your vision to life.</p>
-          <Link to="/contact" style={{
-            display: "inline-block", padding: "16px 40px", fontWeight: 700,
-            backgroundColor: "#06b6d4", color: "#ffffff", borderRadius: "0.75rem",
-            textDecoration: "none", transition: "background-color 0.2s",
-          }}
+          <p style={{ color: "#9ca3af", marginBottom: "2.5rem", fontSize: "clamp(1rem, 1.3vw, 1.4rem)" }}>Let's discuss and bring your vision to life.</p>
+          <Link to="/contact" style={{ display: "inline-block", padding: "clamp(12px, 1.2vw, 20px) clamp(32px, 3vw, 60px)", fontWeight: 700, backgroundColor: "#06b6d4", color: "#ffffff", borderRadius: "0.75rem", textDecoration: "none", transition: "background-color 0.2s", fontSize: "clamp(0.875rem, 1.1vw, 1.2rem)" }}
             onMouseEnter={e => e.currentTarget.style.backgroundColor = "#22d3ee"}
             onMouseLeave={e => e.currentTarget.style.backgroundColor = "#06b6d4"}
-          >
-            Get in Touch →
-          </Link>
+          >Get in Touch →</Link>
         </div>
       </section>
     </div>
