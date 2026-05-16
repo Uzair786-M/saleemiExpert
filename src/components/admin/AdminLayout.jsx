@@ -8,6 +8,8 @@ const navItems = [
   { label: "Testimonials",to: "/admin/testimonials", icon: "⭐" },
   { label: "Portfolio",   to: "/admin/portfolio",    icon: "🗂️"  },
   { label: "Services",    to: "/admin/services",     icon: "⚡" },
+  { label: "About Me",    to: "/admin/about",         icon: "👤" },
+  { label: "Pricing",     to: "/admin/pricing",       icon: "💰" },
 ];
 
 const sidebarW = "260px";

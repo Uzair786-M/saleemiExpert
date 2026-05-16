@@ -1,8 +1,9 @@
 import { ContactForm } from "../components/ContactForm";
+import { useSiteData } from "../context/SiteDataContext";
 import { TestimonialsGrid } from "../components/TestimonialsGrid";
 import { SectionHeader } from "../components/SectionHeader";
-import { useFetch } from "../hooks/useData";
-import { fetchTestimonials } from "../services/api";
+
+
 import { CONTACT_INFO } from "../data/constants";
 
 const faqs = [
@@ -16,7 +17,8 @@ const faqs = [
 const inner = { width: "100%", padding: "0 clamp(1.5rem, 5vw, 6rem)" };
 
 export const ContactPage = () => {
-  const { data: testimonials, loading } = useFetch(fetchTestimonials);
+  const { testimonials } = useSiteData();
+  const loading = false;
 
   return (
     <div style={{ paddingTop: "6rem" }}>

@@ -1,6 +1,7 @@
-import { useFetch } from "../../hooks/useData";
-import { fetchServices, fetchPortfolioItems, fetchTestimonials } from "../../services/api";
+
+
 import { Link } from "react-router-dom";
+import { useSiteData } from "../../context/SiteDataContext";
 
 const StatCard = ({ icon, label, value, color, to }) => (
   <Link to={to} style={{ textDecoration: "none" }}>
@@ -44,9 +45,9 @@ const QuickLink = ({ to, icon, label, desc }) => (
 );
 
 export const DashboardPage = () => {
-  const { data: services } = useFetch(fetchServices);
-  const { data: portfolio } = useFetch(fetchPortfolioItems);
-  const { data: testimonials } = useFetch(fetchTestimonials);
+  const { services, portfolio, testimonials } = useSiteData();
+
+
 
   const stats = [
     { icon: "⚡", label: "Total Services",     value: services?.length ?? "—",     color: "#06b6d4", to: "/admin/services"     },

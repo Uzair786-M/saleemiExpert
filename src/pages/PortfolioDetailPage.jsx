@@ -1,10 +1,11 @@
 import { useParams, Link, useNavigate } from "react-router-dom";
-import { PORTFOLIO_ITEMS } from "../data/constants";
+import { useSiteData } from "../context/SiteDataContext";
 
 const inner = { width: "100%", padding: "0 clamp(1.5rem, 5vw, 6rem)" };
 
 export const PortfolioDetailPage = () => {
   const { id }   = useParams();
+  const { portfolio: PORTFOLIO_ITEMS } = useSiteData();
   const navigate = useNavigate();
   const item     = PORTFOLIO_ITEMS.find(p => p.id === Number(id));
 

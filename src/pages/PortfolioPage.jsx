@@ -1,14 +1,16 @@
 import { useState } from "react";
+import { useSiteData } from "../context/SiteDataContext";
 import { Link } from "react-router-dom";
 import { PortfolioGrid } from "../components/PortfolioGrid";
-import { useFetch } from "../hooks/useData";
-import { fetchPortfolioItems } from "../services/api";
+
+
 
 const CATEGORIES = ["All", "E-commerce", "Automation", "Web Development"];
 const inner = { width: "100%", padding: "0 clamp(1.5rem, 5vw, 6rem)" };
 
 export const PortfolioPage = () => {
-  const { data: portfolio, loading } = useFetch(fetchPortfolioItems);
+  const { portfolio } = useSiteData();
+  const loading = false;
   const [activeCategory, setActiveCategory] = useState("All");
 
   const filtered = activeCategory === "All"

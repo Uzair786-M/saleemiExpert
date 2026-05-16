@@ -1,7 +1,8 @@
 import { Link } from "react-router-dom";
+import { useSiteData } from "../context/SiteDataContext";
 import { SectionHeader } from "../components/SectionHeader";
-import { useFetch } from "../hooks/useData";
-import { fetchServices } from "../services/api";
+
+
 
 const steps = [
   { step: "01", title: "Discovery", desc: "We discuss your goals, requirements, and project scope in detail." },
@@ -13,7 +14,8 @@ const steps = [
 const inner = { width: "100%", padding: "0 clamp(1.5rem, 5vw, 6rem)" };
 
 export const ServicesPage = () => {
-  const { data: services, loading } = useFetch(fetchServices);
+  const { services } = useSiteData();
+  const loading = false;
 
   return (
     <div style={{ paddingTop: "6rem" }}>
